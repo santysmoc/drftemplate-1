@@ -43,14 +43,13 @@ class Rol(models.Model):
 class User(models.Model):
     email = models.EmailField(max_length=120, verbose_name= 'Email')
     password = models.CharField(max_length=120, verbose_name= 'Pasword')
-    rol_id = models.ForeignKey(on_delete=models.CASCADE, verbose_name= 'Rol')
+    rol_id = models.ForeignKey(Rol, on_delete=models.CASCADE, verbose_name= 'Rol')
 
     class Meta:
         db_table = 'users'
 #User sin rol id, pensando en que para web no se debe especificar pues sólo es para employers.
 class Rol(models.Model):
-    name = models.CharField(null=True, verbose_name= 'name')
-    
+    name = models.BooleanField(null=True, verbose_name= 'name')
     
     class Meta:
         db_table = 'roles'
